@@ -15,22 +15,6 @@ export class TasksService {
   getTasks(filterDto: GetTasksFilterDto): Promise<Task[]> {
     return this.taskRepository.getTasks(filterDto);
   }
-  // getAllTasks(): Task[] {
-  //   return [...this.tasks];
-  // }
-  // getTasksWithFilters(filterDto: GetTasksFilterDto): Task[] {
-  //   const { status, search } = filterDto;
-  //   let tasks = this.getAllTasks();
-  //   if (status) {
-  //     tasks = tasks.filter(task => task.status === status);
-  //   }
-  //   if (search) {
-  //     tasks = tasks.filter(
-  //       task => task.title.includes(search) || task.desc.includes(search),
-  //     );
-  //   }
-  //   return tasks;
-  // }
 
   async getTaskById(id: number): Promise<Task> {
     const found = await this.taskRepository.findOne(id);
@@ -43,11 +27,6 @@ export class TasksService {
   async createTask(createTaskDTO: CreateTaskDTO): Promise<Task> {
     return this.taskRepository.createTask(createTaskDTO);
   }
-  // updateTaskStatus(id: string, newStatus: TaskStatus) {
-  //   const task = this.getTaskById(id);
-  //   task.status = newStatus;
-  //   return task;
-  // }
 
   async updateTaskStatus(id: number, newStatus: TaskStatus): Promise<Task> {
     const task = await this.getTaskById(id);
