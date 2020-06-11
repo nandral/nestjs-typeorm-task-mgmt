@@ -7,11 +7,11 @@ const { host, port, username, password, database, synchronize } = dbConfig;
 
 export const typeOrmConfig: TypeOrmModuleOptions = {
   type: dbConfig.type,
-  host: process.env.RDS_HOSTNAME || host,
-  port: process.env.RDS_PORT || port,
+  host: process.env.DB_HOSTNAME || host,
+  port: process.env.DB_PORT || port,
   username: process.env.USERNAME || username,
   password: process.env.PASSWORD || password,
-  database: process.env.RDS_DB_NAME || database,
+  database: process.env.DB_NAME || database,
   entities: [__dirname + '/../**/*.entity.{js,ts}'],
   /**
    * process.env.TYPEORM_SYNC will be set true for FIRST TIME
