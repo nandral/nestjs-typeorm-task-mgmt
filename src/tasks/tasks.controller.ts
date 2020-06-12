@@ -21,14 +21,19 @@ import { TaskStatusValidationPipe } from './validation-pipes/task-status-validat
 import { Task } from './task.entity';
 import { TaskStatus } from './task-status.enum';
 import { AuthGuard } from '@nestjs/passport';
-import { User } from 'src/auth/user.entity';
-import { GetUser } from 'src/auth/get-user.decorator';
+import { User } from '../auth/user.entity';
+import { GetUser } from '../auth/get-user.decorator';
 
 @Controller('tasks')
 @UseGuards(AuthGuard())
 export class TasksController {
   private logger = new Logger('TasksController');
   constructor(private tasksService: TasksService) {}
+
+  @Get('/sample')
+  sample() {
+    return 'Hello World!';
+  }
 
   @Get()
   getTasks(

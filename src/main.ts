@@ -13,7 +13,7 @@ async function bootstrap() {
   } else {
     //TODO enable below line after origin is setup
     // app.enableCors({ origin: serverConfig.origin });
-    app.enableCors();
+    app.enableCors(); //
     // logger.log(`Accepting requests from origin ${serverConfig.origin}`);
     logger.log('Accepting requests .. PROD ###');
   }
