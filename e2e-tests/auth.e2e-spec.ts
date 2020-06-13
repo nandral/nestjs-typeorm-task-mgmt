@@ -5,7 +5,7 @@ import { AppModule } from '../src/app.module';
 import * as assert from 'assert';
 import { randomBytes } from 'crypto';
 
-describe('AppController (e2e)', () => {
+describe('AuthController (e2e)', () => {
   let app: INestApplication;
   const username = `user-${randomBytes(4).toString('hex')}`;
   const password = 'Test@123';
