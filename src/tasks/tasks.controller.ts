@@ -23,18 +23,23 @@ import { TaskStatus } from './task-status.enum';
 import { AuthGuard } from '@nestjs/passport';
 import { User } from '../auth/user.entity';
 import { GetUser } from '../auth/get-user.decorator';
+import {
+  ApiBearerAuth,
+  ApiBody,
+  ApiCreatedResponse,
+  ApiUnauthorizedResponse,
+  ApiOkResponse,
+} from '@nestjs/swagger';
 
 @Controller('tasks')
 @UseGuards(AuthGuard())
+@ApiBearerAuth()
 export class TasksController {
   private logger = new Logger('TasksController');
   constructor(private tasksService: TasksService) {}
 
-  @Get('/sample')
-  sample() {
-    return 'Hello World!';
-  }
-
+  @ApiOkResponse({ description: 'Get tasks. Filter on status or search' })
+  @ApiUnauthorizedResponse({ description: 'Unauthorized user' })
   @Get()
   getTasks(
     @Query(ValidationPipe) filterDto: GetTasksFilterDto,
@@ -49,6 +54,8 @@ export class TasksController {
     return this.tasksService.getTasks(filterDto, user);
   }
 
+  @ApiOkResponse({ description: 'Get task by ID' })
+  @ApiUnauthorizedResponse({ description: 'Unauthorized user' })
   @Get('/:id')
   getTaskById(
     @Param('id', ParseIntPipe) id: number,
@@ -59,6 +66,8 @@ export class TasksController {
   }
 
   @Delete('/:id')
+  @ApiOkResponse({ description: 'Task Deletion' })
+  @ApiUnauthorizedResponse({ description: 'Unauthorized user' })
   deleteTask(
     @Param('id', ParseIntPipe) id: number,
     @GetUser()
@@ -69,6 +78,8 @@ export class TasksController {
 
   @Post()
   @UsePipes(ValidationPipe)
+  @ApiCreatedResponse({ description: 'Task creation' })
+  @ApiUnauthorizedResponse({ description: 'Unauthorized user' })
   createTask(
     @Body() createTaskDTO: CreateTaskDTO,
     @GetUser()
@@ -81,9 +92,12 @@ export class TasksController {
   }
 
   @Patch(':id/status')
+  @ApiCreatedResponse({ description: 'Update Task' })
+  @ApiUnauthorizedResponse({ description: 'Unauthorized user' })
   updateTaskStatus(
     @Param('id', ParseIntPipe) id: number,
-    @Body('status', TaskStatusValidationPipe) status: TaskStatus,
+    @Body('status', TaskStatusValidationPipe)
+    status: TaskStatus,
     @GetUser()
     user: User,
   ): Promise<Task> {
