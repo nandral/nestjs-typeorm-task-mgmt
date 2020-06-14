@@ -20,6 +20,10 @@ Under the hood, Nest makes use of [Express](https://expressjs.com/), but also, p
 
 ## About Task Management
 
+### Sample deployment
+
+Code has been deployed to Heroku and is available for testing on swagger at https://typeorm-task-mgmt.herokuapp.com/
+
 ### Functional specs
 
 Task management allows users to register, create tasks and manage them, major features are
@@ -44,6 +48,12 @@ Task management allows users to register, create tasks and manage them, major fe
 - PassportJS, JWT tokens, Password hashing, salts
 - Unit tests using Jest
 - Supertest for end to end testing
+
+### Technical documentation using [Compodoc](https://compodoc.app)
+
+As NestJS is heavily inspired by Angular, we can generate the documentation about project structure modules, controllers, services etc. I have generated the docks and uploaded to netlify
+
+https://task-mgmt-api-docs.netlify.app/modules.html
 
 ## Installation
 
@@ -76,18 +86,3 @@ $ npm run test
 $ npm run test:e2e
 
 ```
-
-<!--
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE). -->
