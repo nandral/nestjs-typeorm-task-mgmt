@@ -20,10 +20,6 @@ Under the hood, Nest makes use of [Express](https://expressjs.com/), but also, p
 
 ## About Task Management
 
-### Sample deployment
-
-Code has been deployed to Heroku and is available for testing on swagger at https://typeorm-task-mgmt.herokuapp.com/
-
 ### Functional specs
 
 Task management allows users to register, create tasks and manage them, major features are
